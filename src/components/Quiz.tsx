@@ -1,19 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { QuizOptionCard } from './QuizOptionCard';
-import { 
-  ChevronLeft, 
-  Briefcase, 
-  Activity, 
-  Footprints, 
-  PersonStanding,
-  Dumbbell,
-  Bike,
-  Swords,
-  Trophy,
-  Target,
-  Medal
-} from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 
 type StepId = 'q1' | 'q2a' | 'q2b';
 
@@ -80,14 +68,14 @@ export function Quiz() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-md mx-auto">
               <QuizOptionCard
                 label="On My Feet All Day"
-                icon={<PersonStanding size={48} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-all-day.png`}
                 selected={q2aAnswer === 'on-my-feet-all-day-custom-orthotics'}
                 onClick={() => setQ2aAnswer('on-my-feet-all-day-custom-orthotics')}
                 className="w-full sm:w-1/2 aspect-square"
               />
               <QuizOptionCard
                 label="Normal Everyday Activity"
-                icon={<Footprints size={48} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-normal-day.png`}
                 selected={q2aAnswer === 'normal-everyday-activity-custom-orthotics'}
                 onClick={() => setQ2aAnswer('normal-everyday-activity-custom-orthotics')}
                 className="w-full sm:w-1/2 aspect-square"
@@ -104,56 +92,56 @@ export function Quiz() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
               <QuizOptionCard
                 label="Running"
-                icon={<Activity size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-running.png`}
                 selected={q2bAnswer === 'running-custom-orthotics'}
                 onClick={() => setQ2bAnswer('running-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Fitness Walking and Hiking"
-                icon={<Footprints size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-hiking.png`}
                 selected={q2bAnswer === 'hiking-and-fitness-walking-custom-orthotics'}
                 onClick={() => setQ2bAnswer('hiking-and-fitness-walking-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Basketball"
-                icon={<Trophy size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-basketball.png`}
                 selected={q2bAnswer === 'basketball-custom-orthotics'}
                 onClick={() => setQ2bAnswer('basketball-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Cycling"
-                icon={<Bike size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-cycling.png`}
                 selected={q2bAnswer === 'cycling-custom-orthotics'}
                 onClick={() => setQ2bAnswer('cycling-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Golf"
-                icon={<Target size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-golf.png`}
                 selected={q2bAnswer === 'golf-custom-orthotics'}
                 onClick={() => setQ2bAnswer('golf-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Tennis"
-                icon={<Medal size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-tennis.png`}
                 selected={q2bAnswer === 'tennis-custom-orthotics'}
                 onClick={() => setQ2bAnswer('tennis-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Gym"
-                icon={<Dumbbell size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-gym.png`}
                 selected={q2bAnswer === 'gym-custom-orthotics'}
                 onClick={() => setQ2bAnswer('gym-custom-orthotics')}
                 className="aspect-square"
               />
               <QuizOptionCard
                 label="Multi-Sports"
-                icon={<Swords size={40} strokeWidth={1.5} />}
+                imageSrc={`${import.meta.env.BASE_URL}images/option-multisports.png`}
                 selected={q2bAnswer === 'multi-sports-custom-orthotics'}
                 onClick={() => setQ2bAnswer('multi-sports-custom-orthotics')}
                 className="aspect-square"
@@ -171,19 +159,19 @@ export function Quiz() {
     <div className="flex-1 w-full max-w-7xl mx-auto flex flex-col md:flex-row px-6 md:px-10 py-12 md:py-16 gap-12 md:gap-24">
       {/* Left Column: Doctor Info */}
       <div className="w-full md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left shrink-0">
-        <div className="w-48 h-48 md:w-full md:max-w-[320px] aspect-square rounded-2xl overflow-hidden mb-6 bg-gray-100 shrink-0 shadow-lg">
+        <div className="w-full max-w-[300px] aspect-[3/4] rounded-2xl overflow-hidden mb-6 bg-[#f7f8fa] shrink-0">
           <img 
-            src={`${import.meta.env.BASE_URL}images/doctor-avatar.png`} 
+            src={`${import.meta.env.BASE_URL}images/doctor-philip-wells.png`} 
             alt="Dr. Philip Wells" 
             className="w-full h-full object-cover object-top"
           />
         </div>
-        <h3 className="font-bold text-xl text-gray-900 mb-2">Dr. Philip Wells, DPM, FACFAS</h3>
         <div className="relative">
           <span className="text-4xl text-gray-300 absolute -top-4 -left-4 font-serif">"</span>
           <p className="text-gray-700 leading-relaxed text-lg italic">
             I recommend Upstep to patients looking for a more affordable, convenient solution. The process is easy, and the results speak for themselves.
           </p>
+          <p className="mt-4 font-bold text-gray-900 not-italic">— Dr. Philip Wells, DPM, FACFAS</p>
         </div>
       </div>
 
@@ -218,7 +206,7 @@ export function Quiz() {
             onClick={handleNext}
             disabled={!stepInfo.hasAnswer}
             className={`
-              w-full md:w-[240px] py-4 rounded-full text-lg font-bold tracking-wide transition-all
+              w-full md:w-[240px] py-4 rounded-lg text-lg font-bold tracking-wide transition-all
               ${stepInfo.hasAnswer 
                 ? 'bg-brand-cyan text-white hover:bg-brand-cyan-hover hover:shadow-lg transform hover:-translate-y-0.5' 
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
