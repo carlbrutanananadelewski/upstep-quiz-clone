@@ -205,11 +205,16 @@ export function Quiz() {
           <button
             onClick={handleNext}
             disabled={!stepInfo.hasAnswer}
+            style={{
+              backgroundColor: stepInfo.hasAnswer
+                ? '#7ce0ff'
+                : 'rgba(124, 224, 255, 0.55)',
+            }}
             className={`
               w-full md:w-[240px] py-4 rounded-lg text-lg font-bold tracking-wide transition-all
               ${stepInfo.hasAnswer 
-                ? 'bg-brand-cyan text-white hover:bg-brand-cyan-hover hover:shadow-lg transform hover:-translate-y-0.5' 
-                : 'bg-brand-cyan text-white opacity-50 cursor-not-allowed'}
+                ? 'text-white hover:shadow-lg transform hover:-translate-y-0.5' 
+                : 'text-white cursor-not-allowed'}
             `}
           >
             NEXT
