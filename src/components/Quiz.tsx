@@ -209,7 +209,7 @@ export function Quiz() {
               w-full md:w-[240px] py-4 rounded-lg text-lg font-bold tracking-wide transition-all
               ${stepInfo.hasAnswer 
                 ? 'bg-brand-cyan text-white hover:bg-brand-cyan-hover hover:shadow-lg transform hover:-translate-y-0.5' 
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
+                : 'bg-brand-cyan text-white opacity-50 cursor-not-allowed'}
             `}
           >
             NEXT
