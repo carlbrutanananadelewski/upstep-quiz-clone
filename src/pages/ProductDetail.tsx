@@ -1,6 +1,13 @@
 import { useParams, Link } from 'wouter';
 import { PRODUCTS } from '../data/products';
-import { Star, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Star, ShieldCheck } from 'lucide-react';
+
+const COLOR_VALUES = {
+  Black: '#111827',
+  Blue: '#1e40af',
+  Orange: '#f97316',
+  Beige: '#e8dcc4',
+} as const;
 
 export function ProductDetail() {
   const params = useParams();
@@ -21,17 +28,13 @@ export function ProductDetail() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 md:py-12 w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-        {/* Left Col - Product Imagery Placeholder */}
-        <div className="bg-[#f5f7f9] rounded-3xl aspect-square flex flex-col items-center justify-center relative overflow-hidden border border-gray-100 p-8 text-center">
-          <div className="absolute top-6 left-6 bg-[#ff4a4a] text-white font-bold px-4 py-1.5 text-sm rounded-sm tracking-wider">
-            SALE
-          </div>
-          
-          <div className="w-48 h-48 md:w-64 md:h-64 bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
-            <span className="text-gray-300 font-medium">Image</span>
-          </div>
-          
-          <div className="text-gray-400 font-medium text-lg">Product SKU: {product.sku}</div>
+        {/* Left Col - Product Imagery */}
+        <div className="bg-[#f5f7f9] rounded-3xl aspect-square flex items-center justify-center overflow-hidden border border-gray-100 p-6">
+          <img
+            src={`${import.meta.env.BASE_URL}images/product-orthotics.png`}
+            alt={`${product.name} custom orthotics`}
+            className="w-full h-full object-contain rounded-2xl"
+          />
         </div>
 
         {/* Right Col - Buy Box */}
@@ -109,19 +112,19 @@ export function ProductDetail() {
           <div className="mb-10">
             <h3 className="font-bold text-gray-900 mb-4 uppercase text-sm tracking-wider">Color</h3>
             <div className="flex gap-4">
-              <button className="w-12 h-12 rounded-full bg-gray-900 ring-2 ring-offset-2 ring-gray-900" aria-label="Black"></button>
-              <button className="w-12 h-12 rounded-full bg-[#1e40af] ring-1 ring-offset-2 ring-gray-200 hover:ring-gray-400 transition-all" aria-label="Blue"></button>
-              <button className="w-12 h-12 rounded-full bg-[#f97316] ring-1 ring-offset-2 ring-gray-200 hover:ring-gray-400 transition-all" aria-label="Orange"></button>
-              <button className="w-12 h-12 rounded-full bg-[#e8dcc4] ring-1 ring-offset-2 ring-gray-200 hover:ring-gray-400 transition-all" aria-label="Beige"></button>
+              {product.colors.map((color, index) => (
+                <button
+                  key={color}
+                  className={`w-12 h-12 rounded-full ring-offset-2 transition-all ${index === 0 ? 'ring-2 ring-gray-900' : 'ring-1 ring-gray-200 hover:ring-gray-400'}`}
+                  style={{ backgroundColor: COLOR_VALUES[color] }}
+                  aria-label={color}
+                />
+              ))}
             </div>
           </div>
 
           <div className="flex flex-col gap-4 mt-auto">
-            <button className="w-full bg-[#111111] hover:bg-black text-white font-bold py-5 rounded-full text-lg tracking-wide transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-              ADD TO CART
-            </button>
-            
-            <Link href="/" className="w-full bg-white hover:bg-gray-50 text-[#111111] border-[2.5px] border-[#111111] font-bold py-5 rounded-full text-lg tracking-wide transition-all text-center flex items-center justify-center">
+            <Link href="/" className="w-full bg-brand-cyan hover:bg-brand-cyan-hover text-white font-bold py-5 rounded-lg text-lg tracking-wide transition-all text-center flex items-center justify-center shadow-sm">
               TAKE THE QUIZ
             </Link>
           </div>
@@ -130,10 +133,6 @@ export function ProductDetail() {
             <div className="flex items-center gap-4 text-gray-800">
               <ShieldCheck className="text-brand-cyan" size={28} strokeWidth={1.5} />
               <span className="font-medium text-lg">180-Day Money-Back Guarantee</span>
-            </div>
-            <div className="flex items-center gap-4 text-gray-800">
-              <CheckCircle className="text-brand-cyan" size={28} strokeWidth={1.5} />
-              <span className="font-medium text-lg">FSA/HSA Eligible</span>
             </div>
           </div>
         </div>
