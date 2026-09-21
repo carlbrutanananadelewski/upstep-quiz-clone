@@ -1,57 +1,40 @@
+import { type ReactNode } from 'react';
+
 export interface QuizOptionCardProps {
   label: string;
   imageSrc?: string;
+  icon?: ReactNode;
   selected: boolean;
   onClick: () => void;
+  className?: string;
 }
 
-export function QuizOptionCard({ label, imageSrc, selected, onClick }: QuizOptionCardProps) {
+export function QuizOptionCard({ label, imageSrc, icon, selected, onClick, className = '' }: QuizOptionCardProps) {
   return (
     <button
       onClick={onClick}
-      className="card-hover"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '176px',
-        height: '165px',
-        backgroundColor: selected ? '#f0f9ff' : '#f5f7f9',
-        borderRadius: '16px',
-        padding: '16px 12px',
-        border: selected ? '2px solid #7ce0ff' : '2px solid transparent',
-        transition: 'all 0.2s ease',
-        cursor: 'pointer',
-      }}
+      className={`card-hover flex flex-col items-center justify-center bg-[#f9fafb] rounded-2xl p-4 transition-all duration-200 cursor-pointer ${
+        selected ? 'bg-[#f0f9ff] border-2 border-brand-cyan shadow-sm' : 'border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-50'
+      } ${className}`}
     >
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', paddingBottom: '12px' }}>
+      <div className="flex flex-col items-center justify-center gap-4 w-full h-full">
         {imageSrc ? (
           <img 
             src={imageSrc} 
             alt={label} 
-            style={{ 
-              maxWidth: '120px', 
-              maxHeight: '85px', 
-              objectFit: 'contain' 
-            }} 
+            className="max-w-[120px] max-h-[85px] object-contain"
           />
-        ) : (
-          <div style={{ width: '70px', height: '70px', backgroundColor: '#e5e7eb', borderRadius: '50%' }} />
-        )}
-      </div>
-      <div style={{
-        backgroundColor: '#fff',
-        color: selected ? '#7ce0ff' : '#6b7280',
-        borderRadius: '99px',
-        padding: '6px 20px',
-        fontSize: '14px',
-        fontWeight: 600,
-        width: '85%',
-        textAlign: 'center',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
-      }}>
-        {label}
+        ) : icon ? (
+          <div className={`flex items-center justify-center ${selected ? 'text-brand-cyan' : 'text-gray-500'}`}>
+            {icon}
+          </div>
+        ) : null}
+        
+        <span className={`text-base font-semibold text-center leading-tight ${
+          selected ? 'text-gray-900' : 'text-gray-600'
+        }`}>
+          {label}
+        </span>
       </div>
     </button>
   );
