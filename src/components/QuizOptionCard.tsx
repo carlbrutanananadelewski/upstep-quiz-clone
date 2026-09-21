@@ -1,15 +1,12 @@
-import { type ReactNode } from 'react';
-
 export interface QuizOptionCardProps {
   label: string;
   imageSrc?: string;
-  icon?: ReactNode;
   selected: boolean;
   onClick: () => void;
   className?: string;
 }
 
-export function QuizOptionCard({ label, imageSrc, icon, selected, onClick, className = '' }: QuizOptionCardProps) {
+export function QuizOptionCard({ label, imageSrc, selected, onClick, className = '' }: QuizOptionCardProps) {
   return (
     <button
       onClick={onClick}
@@ -18,17 +15,13 @@ export function QuizOptionCard({ label, imageSrc, icon, selected, onClick, class
       } ${className}`}
     >
       <div className="flex flex-col items-center justify-center gap-4 w-full h-full">
-        {imageSrc ? (
+        {imageSrc && (
           <img 
             src={imageSrc} 
             alt={label} 
-            className="max-w-[120px] max-h-[85px] object-contain"
+            className="w-full min-h-0 flex-1 object-contain rounded-xl"
           />
-        ) : icon ? (
-          <div className={`flex items-center justify-center ${selected ? 'text-brand-cyan' : 'text-gray-500'}`}>
-            {icon}
-          </div>
-        ) : null}
+        )}
         
         <span className={`text-base font-semibold text-center leading-tight ${
           selected ? 'text-gray-900' : 'text-gray-600'
