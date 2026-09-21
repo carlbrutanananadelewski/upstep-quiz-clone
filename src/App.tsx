@@ -1,13 +1,12 @@
-import { type ReactNode } from 'react';
-import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
+import { Route, Switch, Router as WouterRouter } from 'wouter';
 import { Header } from './components/Header';
 import { Quiz } from './components/Quiz';
-import { Result } from './pages/Result';
+import { ProductDetail } from './pages/ProductDetail';
 
 function NotFound() {
   return (
-    <div style={{ textAlign: 'center', padding: '100px 20px' }}>
-      <h1>404 - Page Not Found</h1>
+    <div className="flex items-center justify-center min-h-[50vh]">
+      <h1 className="text-2xl font-semibold">404 - Page Not Found</h1>
     </div>
   );
 }
@@ -16,7 +15,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Quiz} />
-      <Route path="/result" component={Result} />
+      <Route path="/products/:id" component={ProductDetail} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -25,9 +24,9 @@ function Router() {
 function App() {
   return (
     <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div className="min-h-[100dvh] flex flex-col bg-white">
         <Header />
-        <main style={{ flex: 1 }}>
+        <main className="flex-1 flex flex-col">
           <Router />
         </main>
       </div>
